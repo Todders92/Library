@@ -3011,6 +3011,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/alexskreen/Desktop/Library.Solution/Library/Views/Books/Index.cshtml",
+      "TargetPath": "Views\\Books\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/alexskreen/Desktop/Library.Solution/Library/Views/Authors/Edit.cshtml",
       "TargetPath": "Views\\Authors\\Edit.cshtml",
       "FileKind": "mvc"
