@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Library.Models;
 
 namespace Library.Models
 {
@@ -12,6 +13,6 @@ namespace Library.Models
     public int BookId { get; set; }
     public string Title { get; set; }
 
-    public ICollection<AuthorBook> Authors { get; }
+    public ICollection<AuthorBook> Authors { get; set;}
   }
 }
