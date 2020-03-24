@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="~/css/styles.css">
   </head>
   <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    @* <a class="navbar-brand" href="/" text="center">Library </a> *@
+    <div class="collapse navbar-collapse" id="navbarText">
+      <div class="form-inline my-2 my-lg-0">
+      @using (Html.BeginForm("search","Authors")) {
+      <input placeholder="type the author or book here" type="text" name="search" class="form-control mr-sm-2" new { style="width:60%" }) %/>
+      <input type="submit" value="search" class="btn btn-outline-success my-2 my-sm-0">
+      }
+      </div>
+  </nav>
+    <div class="container">
     @RenderBody()
   </body>
 </html>
