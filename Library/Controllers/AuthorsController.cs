@@ -71,5 +71,12 @@ namespace Library.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+    public ActionResult Search(string search)
+    {
+      List<Author> model = _db.Authors.Where(author => (author.AuthorName.Contains(search))).ToList();
+
+      return View(model);
+
+    }
   }
 }
