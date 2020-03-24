@@ -2,27 +2,27 @@
   Layout = "_Layout";
 }
 
-@model Library.Models.Author;
+@model Library.Models.Author
 
 <h2>Author Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.AuthorName): @Html.DisplayFor(model => model.AuthorName)</h3>
 
-@if(@Model.Items.Count == 0)
+@if(@Model.Books.Count == 0)
 {
-  <p>This category does not contain any items</p>
+  <p>The library doesn't currently have any books by this author</p>
 }
 else
 {
-  <h4>Items the category contains:</h4>
+  <h4>Books by this author:</h4>
   <ul>
-  @foreach(var join in Model.Items)
+  @foreach(var join in Model.Books)
   {
-    <li>@join.Item.Description</li>
+    <li>@join.Book.Title</li>
   }
   </ul>
 }
 
-<p>@Html.ActionLink("Back to categories", "Index")</p>
+<p>@Html.ActionLink("Back to authors", "Index")</p>
 <p>@Html.ActionLink("Edit Author", "Edit", new { id = Model.AuthorId })</p>
 <p>@Html.ActionLink("Delete Author", "Delete", new { id = Model.AuthorId })</p>

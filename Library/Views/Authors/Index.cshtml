@@ -12,9 +12,9 @@
   <h3>No authors have been added yet!</h3>
 } 
 
-@foreach (Author Authorodel)
+@foreach (Author author in Model)
 {
-  <li>@Html.ActionLink($"{Author.AuthorName}", "Details", new { id = Author.AuthorId })</li>
+  <li>@Html.ActionLink($"{author.AuthorName}", "Details", new { id = author.AuthorId })</li>
 }
 
 <p>@Html.ActionLink("Add new Author", "Create")</p>
