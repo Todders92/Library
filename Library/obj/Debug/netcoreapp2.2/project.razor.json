@@ -2961,6 +2961,11 @@
   "RootNamespace": "Library",
   "Documents": [
     {
+      "FilePath": "/Users/alexskreen/Desktop/Library.Solution/Library/Views/Books/Search.cshtml",
+      "TargetPath": "Views\\Books\\Search.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/alexskreen/Desktop/Library.Solution/Library/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
