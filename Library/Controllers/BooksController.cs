@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
-//new using directives
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
@@ -13,20 +11,18 @@ using System.Security.Claims;
 
 namespace Library.Controllers
 {
-  [Authorize] //new line
+  [Authorize]
   public class BooksController : Controller
   {
     private readonly LibraryContext _db;
-    private readonly UserManager<ApplicationUser> _userManager; //new line
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    //updated constructor
     public BooksController(UserManager<ApplicationUser> userManager, LibraryContext db)
     {
       _userManager = userManager;
       _db = db;
     }
 
-    //updated Index method
     public async Task<ActionResult> Index()
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -41,7 +37,6 @@ namespace Library.Controllers
       return View();
     }
 
-    //updated Create post method
     [HttpPost]
     public async Task<ActionResult> Create(Book book, int AuthorId)
     {

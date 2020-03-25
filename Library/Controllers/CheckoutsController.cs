@@ -34,118 +34,120 @@ namespace Library.Controllers
       var userCheckouts = _db.Checkouts.Where(entry => entry.User.Id == currentUser.Id);
       return View(userCheckouts);
     }
-
-    public ActionResult Create()
-    {
-      ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
-      return View();
-    }
-
-    //updated Create post method
-    [HttpPost]
-    public async Task<ActionResult> Create(Checkout checkout, int BookId)
-    {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      checkout.User = currentUser;
-      _db.Checkouts.Add(checkout);
-      if (BookId != 0)
-      {
-        _db.BookCheckout.Add(new BookCheckout(checkout.CheckoutId, BookId) { BookId = BookId, CheckoutId = checkout.CheckoutId });
-      }
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
-
-    public ActionResult Details(int id)
-    {
-      var thisCheckout = _db.Checkouts
-          .Include(checkout => checkout.Books)
-          .ThenInclude(join => join.Book)
-          .FirstOrDefault(checkout => checkout.CheckoutId == id);
-      return View(thisCheckout);
-    }
-
-    public ActionResult Edit(int id)
-    {
-      var thisCheckout = _db.Checkouts.FirstOrDefault(checkouts => checkouts.CheckoutId == id);
-      ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
-      return View(thisCheckout);
-    }
-
-    [HttpPost]
-    public ActionResult Edit(Checkout checkout, int BookId)
-    {
-      if (BookId != 0)
-      {
-        _db.BookCheckout.Add(new BookCheckout(checkout.CheckoutId, BookId) { BookId = BookId, CheckoutId = checkout.CheckoutId });
-      }
-      _db.Entry(checkout).State = EntityState.Modified;
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
-
-    public ActionResult AddBook(int id)
-    {
-      var thisCheckout = _db.Checkouts.FirstOrDefault(checkouts => checkouts.CheckoutId == id);
-      ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
-      return View(thisCheckout);
-    }
-
-    [HttpPost]
-    public ActionResult AddBook(Checkout checkout, int BookId)
-    {
-      if (BookId != 0)
-      {
-        _db.BookCheckout.Add(new BookCheckout(checkout.CheckoutId, BookId) { BookId = BookId, CheckoutId = checkout.CheckoutId });
-      }
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
-
-    public ActionResult Delete(int id)
-    {
-      var thisCheckout = _db.Checkouts.FirstOrDefault(checkouts => checkouts.CheckoutId == id);
-      return View(thisCheckout);
-    }
-
-    [HttpPost, ActionName("Delete")]
-    public ActionResult DeleteConfirmed(int id)
-    {
-      var thisCheckout = _db.Checkouts.FirstOrDefault(checkouts => checkouts.CheckoutId == id);
-      _db.Checkouts.Remove(thisCheckout);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
-
-    [HttpPost]
-    public ActionResult DeleteAuthor(int joinId)
-    {
-      var joinEntry = _db.BookCheckout.FirstOrDefault(entry => entry.BookCheckoutId == joinId);
-      _db.BookCheckout.Remove(joinEntry);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
-    [HttpPost]
-    public ActionResult BookCheckout(int bookId)
-    {
-      BookCheckout thisCheckout = _db.BookCheckout.FirstOrDefault(checkouts => checkouts.CheckoutId == bookId);
-      ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
-      return View(thisCheckout);
-    }
-    
-    [HttpPost]
-    
-    public ActionResult BookCheckout(Checkout checkout, List<int> BookId)
-    {
-      foreach (var id in BookId)
-      {
-        Book book = _db.Books.FirstOrDefault(checkouts => checkouts.BookId == id);
-        Checkout thisCheckout = new Checkout(checkout.CheckoutId, book.BookId);
-        _db.Checkouts.Add(thisCheckout);
-      }
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
   }
 }
+
+    // public ActionResult Create()
+    // {
+    //   ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
+    //   return View();
+    // }
+
+    // //updated Create post method
+    // [HttpPost]
+    // public async Task<ActionResult> Create(Checkout checkout, int BookId)
+    // {
+    //   var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    //   var currentUser = await _userManager.FindByIdAsync(userId);
+    //   checkout.User = currentUser;
+    //   _db.Checkouts.Add(checkout);
+    //   if (BookId != 0)
+    //   {
+    //     _db.BookCheckout.Add(new BookCheckout(checkout.CheckoutId, BookId) { BookId = BookId, CheckoutId = checkout.CheckoutId });
+    //   }
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index");
+    // }
+
+    // public ActionResult Details(int id)
+    // {
+    //   var thisCheckout = _db.Checkouts
+    //       .Include(checkout => checkout.Books)
+    //       .ThenInclude(join => join.Book)
+    //       .FirstOrDefault(checkout => checkout.CheckoutId == id);
+    //   return View(thisCheckout);
+    // }
+
+    // public ActionResult Edit(int id)
+    // {
+    //   var thisCheckout = _db.Checkouts.FirstOrDefault(checkouts => checkouts.CheckoutId == id);
+    //   ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
+    //   return View(thisCheckout);
+    // }
+
+    // [HttpPost]
+    // public ActionResult Edit(Checkout checkout, int BookId)
+    // {
+    //   if (BookId != 0)
+    //   {
+    //     _db.BookCheckout.Add(new BookCheckout(checkout.CheckoutId, BookId) { BookId = BookId, CheckoutId = checkout.CheckoutId });
+    //   }
+    //   _db.Entry(checkout).State = EntityState.Modified;
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index");
+    // }
+
+    // public ActionResult AddBook(int id)
+    // {
+    //   var thisCheckout = _db.Checkouts.FirstOrDefault(checkouts => checkouts.CheckoutId == id);
+    //   ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
+    //   return View(thisCheckout);
+    // }
+
+    // [HttpPost]
+    // public ActionResult AddBook(Checkout checkout, int BookId)
+    // {
+    //   if (BookId != 0)
+    //   {
+    //     _db.BookCheckout.Add(new BookCheckout(checkout.CheckoutId, BookId) { BookId = BookId, CheckoutId = checkout.CheckoutId });
+    //   }
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index");
+    // }
+
+    // public ActionResult Delete(int id)
+    // {
+    //   var thisCheckout = _db.Checkouts.FirstOrDefault(checkouts => checkouts.CheckoutId == id);
+    //   return View(thisCheckout);
+    // }
+
+    // [HttpPost, ActionName("Delete")]
+    // public ActionResult DeleteConfirmed(int id)
+    // {
+    //   var thisCheckout = _db.Checkouts.FirstOrDefault(checkouts => checkouts.CheckoutId == id);
+    //   _db.Checkouts.Remove(thisCheckout);
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index");
+    // }
+
+    // [HttpPost]
+    // public ActionResult DeleteAuthor(int joinId)
+    // {
+    //   var joinEntry = _db.BookCheckout.FirstOrDefault(entry => entry.BookCheckoutId == joinId);
+    //   _db.BookCheckout.Remove(joinEntry);
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index");
+    // }
+    // [HttpPost]
+    // public ActionResult Checkout(int bookId)
+    // {
+    //   BookCheckout thisCheckout = _db.BookCheckout.FirstOrDefault(checkouts => checkouts.CheckoutId == bookId);
+    //   ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
+    //   return View(thisCheckout);
+    // }
+    
+    // [HttpPost]
+    
+    // public ActionResult Checkout(Checkout checkout, List<int> BookId)
+    // {
+    //   foreach (var id in BookId)
+    //   {
+    //     Book book = _db.Books.FirstOrDefault(checkouts => checkouts.BookId == id);
+    //     BookCheckout thisCheckout = new BookCheckout(checkout.CheckoutId, book.BookId);
+    //     _db.BookCheckout.Add(thisCheckout);
+    //   }
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index");
+//     }
+//   }
+// }
