@@ -39,3 +39,4 @@
 /Users/alexskreen/Desktop/Library.Solution/Library/obj/Debug/netcoreapp2.2/Razor/Views/Authors/Search.cshtml.g.cs
 /Users/alexskreen/Desktop/Library.Solution/Library/obj/Debug/netcoreapp2.2/Razor/Views/Books/Search.cshtml.g.cs
 /Users/alexskreen/Desktop/Library.Solution/Library/obj/Debug/netcoreapp2.2/Razor/Views/Books/Checkout.cshtml.g.cs
+/Users/alexskreen/Desktop/Library.Solution/Library/obj/Debug/netcoreapp2.2/Razor/Views/Checkouts/Index.cshtml.g.cs

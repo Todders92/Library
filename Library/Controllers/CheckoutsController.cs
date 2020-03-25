@@ -126,5 +126,12 @@ namespace Library.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+    [HttpPost]
+    public ActionResult Checkout(Checkout checkout, int BookId)
+    {
+      var thisCheckout = _db.Checkouts.FirstOrDefault(checkouts => checkouts.CheckoutId == BookId);
+      ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
+      return View(thisCheckout);
+    }
   }
 }

@@ -2971,6 +2971,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/alexskreen/Desktop/Library.Solution/Library/Views/Checkouts/Index.cshtml",
+      "TargetPath": "Views\\Checkouts\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/alexskreen/Desktop/Library.Solution/Library/Views/Account/Register.cshtml",
       "TargetPath": "Views\\Account\\Register.cshtml",
       "FileKind": "mvc"
