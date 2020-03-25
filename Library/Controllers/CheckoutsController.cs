@@ -85,7 +85,7 @@ namespace Library.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult AddCategory(int id)
+    public ActionResult AddAuthor(int id)
     {
       var thisCheckout = _db.Checkouts.FirstOrDefault(checkouts => checkouts.CheckoutId == id);
       ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
@@ -93,7 +93,7 @@ namespace Library.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddCategory(Checkout checkout, int BookId)
+    public ActionResult AddAuthor(Checkout checkout, int BookId)
     {
       if (BookId != 0)
       {
@@ -119,7 +119,7 @@ namespace Library.Controllers
     }
 
     [HttpPost]
-    public ActionResult DeleteCategory(int joinId)
+    public ActionResult DeleteAuthor(int joinId)
     {
       var joinEntry = _db.BookCheckout.FirstOrDefault(entry => entry.BookCheckoutId == joinId);
       _db.BookCheckout.Remove(joinEntry);
