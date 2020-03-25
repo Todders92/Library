@@ -12,11 +12,10 @@ namespace Library.Models
         public Book Book { get; set; }
         public Checkout Checkout { get; set; }
         
-        public virtual ICollection<Checkout> Checkouts {get; set;}
-        public BookCheckout(int checkoutId, int bookId)
-        {
-          CheckoutId = checkoutId;
-          BookId = bookId;
-        }
+        // public BookCheckout(int checkoutId, int bookId)
+        // {
+        //   CheckoutId = checkoutId;
+        //   BookId = bookId;
+        // }
     }
 }

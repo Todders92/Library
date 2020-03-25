@@ -15,5 +15,8 @@ namespace Library.Models
     public virtual ApplicationUser User { get; set; }
 
     public ICollection<AuthorBook> Authors { get; set; }
+
+    public ICollection<BookCheckout> Checkouts { get; set; }
+
   }
 }

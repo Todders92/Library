@@ -12,6 +12,8 @@ namespace Library.Models
     public int BookId {get; set;}
     public string DueDate { get; set; }
     public string History { get; set; }
+    // public virtual BookCheckout BookCheckout {get; set;}
+    public virtual Book Book {get; set;}
     public virtual ApplicationUser User { get; set; }
 
     public ICollection<BookCheckout> Books { get; set; }
@@ -22,6 +24,5 @@ namespace Library.Models
       this.Books = new HashSet<BookCheckout>();
     }
     
-    public Checkout(){}
   }
 }
