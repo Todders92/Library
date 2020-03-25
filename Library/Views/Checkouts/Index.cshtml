@@ -1,7 +1,11 @@
+@using Library.Models;
+@using System.Security.Claims
+@model IEnumerable<Library.Models.BookCheckout>
+
 @{
   Layout = "_Layout";
 }
 
 <h1>Your books</h1>
-<p>@Html.ActionLink("see currently checked out books", "Checkout", "Books")</p>
+<p>@Html.ActionLink("see currently checked out books", "BookCheckout", "Books")</p>
 <p>@Html.ActionLink("See all books", "Index", "Books")</p>

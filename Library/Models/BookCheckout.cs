@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace Library.Models
 {
   public class BookCheckout
@@ -8,6 +11,8 @@ namespace Library.Models
         public int CheckoutId { get; set; }
         public Book Book { get; set; }
         public Checkout Checkout { get; set; }
+        
+        public virtual ICollection<Checkout> Checkouts {get; set;}
         public BookCheckout(int checkoutId, int bookId)
         {
           CheckoutId = checkoutId;

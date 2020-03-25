@@ -51,7 +51,7 @@ namespace Library.Controllers
       _db.Checkouts.Add(checkout);
       if (BookId != 0)
       {
-        _db.BookCheckout.Add(new BookCheckout() { BookId = BookId, CheckoutId = checkout.CheckoutId });
+        _db.BookCheckout.Add(new BookCheckout(checkout.CheckoutId, BookId) { BookId = BookId, CheckoutId = checkout.CheckoutId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -78,7 +78,7 @@ namespace Library.Controllers
     {
       if (BookId != 0)
       {
-        _db.BookCheckout.Add(new BookCheckout() { BookId = BookId, CheckoutId = checkout.CheckoutId });
+        _db.BookCheckout.Add(new BookCheckout(checkout.CheckoutId, BookId) { BookId = BookId, CheckoutId = checkout.CheckoutId });
       }
       _db.Entry(checkout).State = EntityState.Modified;
       _db.SaveChanges();
@@ -97,7 +97,7 @@ namespace Library.Controllers
     {
       if (BookId != 0)
       {
-        _db.BookCheckout.Add(new BookCheckout() { BookId = BookId, CheckoutId = checkout.CheckoutId });
+        _db.BookCheckout.Add(new BookCheckout(checkout.CheckoutId, BookId) { BookId = BookId, CheckoutId = checkout.CheckoutId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -127,22 +127,22 @@ namespace Library.Controllers
       return RedirectToAction("Index");
     }
     [HttpPost]
-    public ActionResult Checkout(int bookId)
+    public ActionResult BookCheckout(int bookId)
     {
-      var thisCheckout = _db.Checkouts.FirstOrDefault(checkouts => checkouts.CheckoutId == bookId);
+      BookCheckout thisCheckout = _db.BookCheckout.FirstOrDefault(checkouts => checkouts.CheckoutId == bookId);
       ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
       return View(thisCheckout);
     }
     
     [HttpPost]
     
-    public ActionResult Checkout(Checkout checkout, List<int> BookId)
+    public ActionResult BookCheckout(Checkout checkout, List<int> BookId)
     {
       foreach (var id in BookId)
       {
         Book book = _db.Books.FirstOrDefault(checkouts => checkouts.BookId == id);
-        BookCheckout thisCheckout = new BookCheckout(checkout.CheckoutId, book.BookId);
-        _db.BookCheckout.Add(thisCheckout);
+        Checkout thisCheckout = new Checkout(checkout.CheckoutId, book.BookId);
+        _db.Checkouts.Add(thisCheckout);
       }
       _db.SaveChanges();
       return RedirectToAction("Index");

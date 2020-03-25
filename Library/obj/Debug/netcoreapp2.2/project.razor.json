@@ -2981,8 +2981,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/alexskreen/Desktop/Library.Solution/Library/Views/Books/Checkout.cshtml",
-      "TargetPath": "Views\\Books\\Checkout.cshtml",
+      "FilePath": "/Users/alexskreen/Desktop/Library.Solution/Library/Views/Checkouts/Checkout.cshtml",
+      "TargetPath": "Views\\Checkouts\\Checkout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/alexskreen/Desktop/Library.Solution/Library/Views/Checkouts/Details.cshtml",
+      "TargetPath": "Views\\Checkouts\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -3021,6 +3026,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/alexskreen/Desktop/Library.Solution/Library/Views/Checkouts/Create.cshtml",
+      "TargetPath": "Views\\Checkouts\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/alexskreen/Desktop/Library.Solution/Library/Views/Authors/Create.cshtml",
       "TargetPath": "Views\\Authors\\Create.cshtml",
       "FileKind": "mvc"
@@ -3033,6 +3043,11 @@
     {
       "FilePath": "/Users/alexskreen/Desktop/Library.Solution/Library/Views/Authors/Edit.cshtml",
       "TargetPath": "Views\\Authors\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/alexskreen/Desktop/Library.Solution/Library/Views/Checkouts/Edit.cshtml",
+      "TargetPath": "Views\\Checkouts\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
