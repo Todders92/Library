@@ -1,0 +1,27 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Library.Models;
+@using System.Security.Claims
+@model IEnumerable<Library.Models.Checkout>
+
+<h1>Books checked out to @User.Identity.Name</h1>
+
+@if (Model.Any())
+{
+  <ul>
+    @foreach (Checkout checkout in Model)
+    {
+      <li>@Html.ActionLink($"{checkout.BookTitle}", "Details", new { id = checkout.CheckoutId })</li>
+    }
+  </ul>
+} 
+else
+{
+  <h3>No books have been added yet!</h3>
+}
+
+<p>@Html.ActionLink("Add new item", "Create")</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
