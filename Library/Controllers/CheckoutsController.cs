@@ -34,6 +34,14 @@ namespace Library.Controllers
       var userCheckouts = _db.Checkouts.Where(entry => entry.User.Id == currentUser.Id);
       return View(userCheckouts);
     }
+    [HttpGet]
+    public ActionResult Checkout(int bookId)
+    {
+      BookCheckout thisCheckout = _db.BookCheckout.FirstOrDefault(checkouts => checkouts.CheckoutId == bookId);
+      ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
+      return View(thisCheckout);
+    }
+  
   }
 }
 
@@ -127,13 +135,6 @@ namespace Library.Controllers
     //   _db.BookCheckout.Remove(joinEntry);
     //   _db.SaveChanges();
     //   return RedirectToAction("Index");
-    // }
-    // [HttpPost]
-    // public ActionResult Checkout(int bookId)
-    // {
-    //   BookCheckout thisCheckout = _db.BookCheckout.FirstOrDefault(checkouts => checkouts.CheckoutId == bookId);
-    //   ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
-    //   return View(thisCheckout);
     // }
     
     // [HttpPost]
