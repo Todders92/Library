@@ -11,6 +11,7 @@ namespace Library.Models
     }
 
     public int CheckoutId { get; set; }
+    public string BookTitle { get; set; }
     public string DueDate { get; set; }
     public string History { get; set; }
     public virtual ApplicationUser User { get; set; }
