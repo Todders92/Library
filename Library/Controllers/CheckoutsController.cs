@@ -127,11 +127,25 @@ namespace Library.Controllers
       return RedirectToAction("Index");
     }
     [HttpPost]
-    public ActionResult Checkout(Checkout checkout, int BookId)
+    public ActionResult Checkout(int bookId)
     {
-      var thisCheckout = _db.Checkouts.FirstOrDefault(checkouts => checkouts.CheckoutId == BookId);
+      var thisCheckout = _db.Checkouts.FirstOrDefault(checkouts => checkouts.CheckoutId == bookId);
       ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
       return View(thisCheckout);
+    }
+    
+    [HttpPost]
+    
+    public ActionResult Checkout(Checkout checkout, List<int> BookId)
+    {
+      foreach (var id in BookId)
+      {
+        Book book = _db.Books.FirstOrDefault(checkouts => checkouts.BookId == id);
+        BookCheckout thisCheckout = new BookCheckout(checkout.CheckoutId, book.BookId);
+        _db.BookCheckout.Add(thisCheckout);
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }

@@ -5,11 +5,7 @@ namespace Library.Models
 {
   public class Checkout
   {
-    public Checkout()
-    {
-      this.Books = new HashSet<BookCheckout>();
-    }
-
+    
     public int CheckoutId { get; set; }
     public string BookTitle { get; set; }
     public string DueDate { get; set; }
@@ -17,5 +13,13 @@ namespace Library.Models
     public virtual ApplicationUser User { get; set; }
 
     public ICollection<BookCheckout> Books { get; set; }
+    public Checkout(int checkoutId, int bookTitle)
+    {
+      CheckoutId = checkoutId;
+      BookTitle = bookTitle;
+      this.Books = new HashSet<BookCheckout>();
+    }
+    
+    public Checkout(){}
   }
 }
