@@ -85,7 +85,7 @@ namespace Library.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult AddAuthor(int id)
+    public ActionResult AddBook(int id)
     {
       var thisCheckout = _db.Checkouts.FirstOrDefault(checkouts => checkouts.CheckoutId == id);
       ViewBag.BookId = new SelectList(_db.Books, "BookId", "Title");
@@ -93,7 +93,7 @@ namespace Library.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddAuthor(Checkout checkout, int BookId)
+    public ActionResult AddBook(Checkout checkout, int BookId)
     {
       if (BookId != 0)
       {
